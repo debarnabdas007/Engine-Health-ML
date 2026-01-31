@@ -1,0 +1,34 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="d-flex justify-content-center align-items-center" style="min-height: 60vh;">
+    <div class="glass-panel p-5 text-center fade-in-up" style="max-width: 500px; width: 100%;">
+        
+
+        <div class="mb-4">
+            <div class="d-inline-block p-1 rounded-circle border border-primary border-opacity-50">
+                <img src="{{ url_for('static', filename='images/profile.jpg') }}" class="rounded-circle object-fit-cover" width="120" height="120" alt="System Admin">
+            </div>
+        </div>    
+
+        <h2 class="fw-bold text-white mb-1">Debarnab Das</h2>
+        <p class="text-primary small fw-bold letter-spacing-2 mb-4">CS UNDERGRADUATE // ML ENGINEER</p>
+
+        <p class="text-white-50 mb-5">
+            Specializing in predictive maintenance systems, full-stack ML pipelines, and production-grade AI deployment.
+        </p>
+
+        <div class="d-flex justify-content-center gap-3">
+            <a href="https://github.com/debarnabdas007" class="btn btn-outline-light rounded-circle" style="width: 50px; height: 50px; display: grid; place-items: center;">
+                <i class="fab fa-github"></i>
+            </a>
+            <a href="https://www.linkedin.com/in/debarnab-das-5363942a0" class="btn btn-outline-primary rounded-circle" style="width: 50px; height: 50px; display: grid; place-items: center;">
+                <i class="fab fa-linkedin-in"></i>
+            </a>
+            <a href="mailto:dasdebarnab321@gmail.com" class="btn btn-outline-light rounded-circle" style="width: 50px; height: 50px; display: grid; place-items: center;">
+                <i class="fas fa-envelope"></i>
+            </a>
+        </div>
+    </div>
+</div>
+{% endblock %}

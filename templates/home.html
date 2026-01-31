@@ -1,0 +1,126 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="row justify-content-center">
+    <div class="col-lg-9 fade-in-up">
+        
+        <div class="text-center mb-5">
+            <h5 class="text-primary opacity-75 fw-bold">SYSTEM DIAGNOSTIC TOOL</h5>
+            <h1 class="display-4 fw-bold">ENGINE TELEMETRY</h1>
+            <div style="height: 2px; width: 60px; background: var(--primary-glow); margin: 20px auto;"></div>
+        </div>
+
+        <div class="glass-panel p-4 p-lg-5">
+            <form action="/predictdata" method="post">
+                
+                <div class="mb-4">
+                    <h6 class="text-uppercase text-white-50 mb-3" style="font-size: 0.8rem; letter-spacing: 1px;">
+                        <i class="fas fa-fire me-2"></i>Thermodynamics & Pressure
+                    </h6>
+                    <div class="row g-3">
+                        <div class="col-md-4">
+                            <label class="small text-muted mb-1">Total Temp (s_2)</label>
+                            <input type="number" step="any" class="form-control" name="s_2" placeholder="642.15" required>
+                        </div>
+                        <div class="col-md-4">
+                            <label class="small text-muted mb-1">Total Pressure (s_3)</label>
+                            <input type="number" step="any" class="form-control" name="s_3" placeholder="1585.29" required>
+                        </div>
+                        <div class="col-md-4">
+                            <label class="small text-muted mb-1">Burner Temp (s_4)</label>
+                            <input type="number" step="any" class="form-control" name="s_4" placeholder="1406.20" required>
+                        </div>
+                    </div>
+                </div>
+
+                <hr class="border-secondary opacity-25 my-4">
+
+                <div class="mb-4">
+                    <h6 class="text-uppercase text-white-50 mb-3" style="font-size: 0.8rem; letter-spacing: 1px;">
+                        <i class="fas fa-tachometer-alt me-2"></i>Performance Metrics
+                    </h6>
+                    <div class="row g-3">
+                        <div class="col-md-6">
+                            <label class="small text-muted mb-1">Bypass Ratio (s_7)</label>
+                            <input type="number" step="any" class="form-control" name="s_7" placeholder="553.90" required>
+                        </div>
+                        <div class="col-md-6">
+                            <label class="small text-muted mb-1">Static Pressure (s_11)</label>
+                            <input type="number" step="any" class="form-control" name="s_11" placeholder="47.30" required>
+                        </div>
+                        <div class="col-md-4">
+                            <label class="small text-muted mb-1">Bleed Enthalpy (s_12)</label>
+                            <input type="number" step="any" class="form-control" name="s_12" placeholder="521.50" required>
+                        </div>
+                        <div class="col-md-4">
+                            <label class="small text-muted mb-1">HPT Coolant (s_15)</label>
+                            <input type="number" step="any" class="form-control" name="s_15" placeholder="8.40" required>
+                        </div>
+                        <div class="col-md-4">
+                            <label class="small text-muted mb-1">LPT Coolant (s_17)</label>
+                            <input type="number" step="any" class="form-control" name="s_17" placeholder="392" required>
+                        </div>
+                    </div>
+                </div>
+
+                <hr class="border-secondary opacity-25 my-4">
+
+                <div class="mb-4">
+                    <h6 class="text-uppercase text-white-50 mb-3" style="font-size: 0.8rem; letter-spacing: 1px;">
+                        <i class="fas fa-microchip me-2"></i>Core Efficiency
+                    </h6>
+                    <div class="row g-3">
+                        <div class="col-md-6">
+                            <label class="small text-muted mb-1">HPT Efficiency (s_20)</label>
+                            <input type="number" step="any" class="form-control" name="s_20" placeholder="38.90" required>
+                        </div>
+                        <div class="col-md-6">
+                            <label class="small text-muted mb-1">LPT Efficiency (s_21)</label>
+                            <input type="number" step="any" class="form-control" name="s_21" placeholder="23.35" required>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="text-center mt-5">
+                    <button type="submit" class="btn btn-elite w-100 py-3 rounded-1">
+                        <i class="fas fa-satellite-dish me-2"></i> INITIATE PREDICTION SEQUENCE
+                    </button>
+                </div>
+            </form>
+
+            {% if results %}
+            <div class="mt-5 p-4 rounded-2 border border-{{ color }} position-relative overflow-hidden text-center fade-in-up" 
+                 style="background: rgba(0, 0, 0, 0.2); backdrop-filter: blur(10px);">
+                
+                <div class="position-absolute top-0 start-0 w-100 h-100 bg-{{ color }}" style="opacity: 0.05;"></div>
+
+                <div class="d-inline-flex align-items-center gap-2 mb-3 px-3 py-1 rounded-pill border border-{{ color }} bg-{{ color }} bg-opacity-10">
+                    <i class="fas {{ icon }} text-{{ color }} animate-pulse"></i>
+                    <span class="text-{{ color }} fw-bold small letter-spacing-2">{{ status }} PHASE</span>
+                </div>
+
+                <h6 class="text-white-50 text-uppercase mb-2" style="font-size: 0.8rem;">Estimated Remaining Useful Life</h6>
+                
+                <div class="d-flex justify-content-center align-items-baseline gap-2">
+                    <span class="display-3 fw-bold text-white" style="text-shadow: 0 0 20px var(--bs-{{ color }});">
+                        {{ results }}
+                    </span>
+                    <span class="text-{{ color }} fw-bold">CYCLES</span>
+                </div>
+
+                <p class="text-{{ color }} opacity-75 small mt-2 mb-0 border-top border-{{ color }} border-opacity-25 pt-2 d-inline-block">
+                    <i class="fas fa-info-circle me-1"></i> {{ msg }}
+                </p>
+
+                <div class="progress mt-4" style="height: 4px; background: rgba(255,255,255,0.1);">
+                    {% set width = (results / 300) * 100 %} <div class="progress-bar bg-{{ color }}" 
+                         role="progressbar" 
+                         style="width: {{ width if width < 100 else 100 }}%; box-shadow: 0 0 10px var(--bs-{{ color }});">
+                    </div>
+                </div>
+            </div>
+            {% endif %}
+        </div>
+    </div>
+</div>
+{% endblock %}

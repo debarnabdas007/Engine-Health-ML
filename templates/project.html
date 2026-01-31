@@ -1,0 +1,69 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="row g-4">
+    <div class="col-md-4 fade-in-up" style="animation-delay: 0.1s;">
+        <div class="glass-panel p-4 h-100">
+            <h4 class="text-primary mb-4"><i class="fas fa-database me-2"></i>DATA SPECS</h4>
+            
+            <ul class="list-unstyled text-muted small">
+                <li class="mb-3 d-flex justify-content-between border-bottom border-secondary border-opacity-25 pb-2">
+                    <span>Dataset ID</span> <span class="text-white">NASA FD001</span>
+                </li>
+                <li class="mb-3 d-flex justify-content-between border-bottom border-secondary border-opacity-25 pb-2">
+                    <span>Engine Type</span> <span class="text-white">Turbofan</span>
+                </li>
+                <li class="mb-3 d-flex justify-content-between border-bottom border-secondary border-opacity-25 pb-2">
+                    <span>Fault Mode</span> <span class="text-danger">HPC Degradation</span>
+                </li>
+                <li class="mb-3 d-flex justify-content-between border-bottom border-secondary border-opacity-25 pb-2">
+                    <span>Train Units</span> <span class="text-white">100 Engines</span>
+                </li>
+            </ul>
+
+            <div class="alert alert-dark border border-secondary mt-4 small">
+                <i class="fas fa-info-circle me-2 text-primary"></i>
+                Data simulates run-to-failure trajectories. Initial wear is normal; degradation accelerates over cycles.
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-8 fade-in-up" style="animation-delay: 0.2s;">
+        <div class="glass-panel p-5">
+            <h2 class="mb-4">MISSION <span class="text-primary">OBJECTIVE</span></h2>
+            <p class="lead text-white-50">
+                To engineer a robust Machine Learning pipeline capable of predicting the **Remaining Useful Life (RUL)** of aircraft engines with high precision.
+            </p>
+
+            <div class="row g-3 my-4">
+                <div class="col-md-4">
+                    <div class="p-3 border border-secondary border-opacity-25 rounded text-center h-100">
+                        <i class="fas fa-check-circle text-success mb-2 fs-4"></i>
+                        <h6 class="fw-bold">Phase 1: Healthy</h6>
+                        <p class="small text-muted mb-0">Optimal Operations</p>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="p-3 border border-secondary border-opacity-25 rounded text-center h-100">
+                        <i class="fas fa-exclamation-triangle text-warning mb-2 fs-4"></i>
+                        <h6 class="fw-bold">Phase 2: Degradation</h6>
+                        <p class="small text-muted mb-0">Fault Propagation</p>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="p-3 border border-danger border-opacity-50 rounded text-center h-100 bg-danger bg-opacity-10">
+                        <i class="fas fa-ban text-danger mb-2 fs-4"></i>
+                        <h6 class="fw-bold">Phase 3: Failure</h6>
+                        <p class="small text-muted mb-0">System Termination</p>
+                    </div>
+                </div>
+            </div>
+
+            <h5 class="mt-5 mb-3 text-white">Technical Architecture</h5>
+            <p class="text-white-50 small">
+                The system ingests 26-column multivariate time-series data. It utilizes an XGBoost regressor trained on feature-engineered sensor history (Rolling Means & Lag Features) to minimize RMSE.
+            </p>
+        </div>
+    </div>
+</div>
+{% endblock %}
